@@ -1,3 +1,8 @@
+# Credit
+This repository was forked from [superseb/omgwtfssl](https://github.com/superseb/omgwtfssl) which was forked from [paulczar/omgwtfssl](https://github.com/paulczar/omgwtfssl).  Paul Czarkowski is the original author of this project, SuperSeb made some changes to the original project that are useful for my projects.
+
+The reason for forking was to change the name of the project and to keep a copy on DockerHub that will not change as I will be using this as a dependency for other scripts.
+
 GENERICSSL - Self Signed SSL Certificate Generator
 =================================================
 
