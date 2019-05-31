@@ -1,7 +1,7 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: omgwtfssl
+  name: genericssl
 data:
   SSL_SUBJECT: "*.192.168.99.100.xip.io"
   SSL_IP: "192.168.99.100"
@@ -11,17 +11,17 @@ data:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: omgwtfssl
+  name: genericssl
 spec:
   template:
     spec:
       restartPolicy: Never
       initContainers:
-      - name: omgwtfssl
-        image: paulczar/omgwtfssl:latest
+      - name: genericssl
+        image: patrick0057/genericssl:latest
         envFrom:
         - configMapRef:
-            name: omgwtfssl
+            name: genericssl
         volumeMounts:
         - name: certs-path
           mountPath: /certs

@@ -2,7 +2,7 @@
 
 if [[ -z $SILENT ]]; then
 echo "----------------------------"
-echo "| OMGWTFSSL Cert Generator |"
+echo "| GENERICSSL Cert Generator |"
 echo "----------------------------"
 echo
 fi
@@ -23,7 +23,7 @@ export SSL_SUBJECT=${SSL_SUBJECT:-"example.com"}
 export SSL_DNS=${SSL_DNS}
 export SSL_IP=${SSL_IP}
 
-export K8S_NAME=${K8S_NAME:-"omgwtfssl"}
+export K8S_NAME=${K8S_NAME:-"genericssl"}
 export K8S_NAMESPACE=${K8S_NAMESPACE:-"default"}
 export K8S_SAVE_CA_KEY=${K8S_SAVE_CA_KEY}
 export K8S_SAVE_CA_CRT=${K8S_SAVE_CA_CRT}
