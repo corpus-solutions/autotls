@@ -28,7 +28,7 @@ export K8S_NAMESPACE=${K8S_NAMESPACE:-"default"}
 export K8S_SAVE_CA_KEY=${K8S_SAVE_CA_KEY}
 export K8S_SAVE_CA_CRT=${K8S_SAVE_CA_CRT}
 export K8S_SHOW_SECRET=${K8S_SHOW_SECRET}
-export SAN_IP=${SAN_IP}
+
 export OUTPUT=${OUTPUT:-"yaml"}
 
 [[ -z $SILENT ]] && echo "--> Certificate Authority"
@@ -61,7 +61,7 @@ EOM
 
 if [[ -n ${SSL_DNS} || -n ${SSL_IP} ]]; then
   cat >>${SSL_CONFIG} <<EOM
-subjectAltName = IP:${SAN_IP}
+subjectAltName = @alt_names
 [alt_names]
 EOM
 
