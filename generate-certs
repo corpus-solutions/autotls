@@ -66,14 +66,14 @@ subjectAltName = @alt_names
 EOM
 
   IFS=","
-  dns=(${SSL_DNS})
+  dns=($(echo $SSL_DNS | tr ";" " "))
   dns+=(${SSL_SUBJECT})
   for i in "${!dns[@]}"; do
     echo DNS.$((i + 1)) = ${dns[$i]} >>${SSL_CONFIG}
   done
 
   if [[ -n ${SSL_IP} ]]; then
-    ip=(${SSL_IP})
+    ip=($(echo $SSL_IP | tr ";" " "))
     for i in "${!ip[@]}"; do
       echo IP.$((i + 1)) = ${ip[$i]} >>${SSL_CONFIG}
     done

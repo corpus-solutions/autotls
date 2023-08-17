@@ -17,21 +17,21 @@ spec:
     spec:
       restartPolicy: Never
       initContainers:
-      - name: genericssl
-        image: patrick0057/genericssl:latest
-        envFrom:
-        - configMapRef:
-            name: genericssl
-        volumeMounts:
-        - name: certs-path
-          mountPath: /certs
+        - name: genericssl
+          image: username/genericssl:v1
+          envFrom:
+            - configMapRef:
+                name: genericssl
+          volumeMounts:
+            - name: certs-path
+              mountPath: /certs
       containers:
-      - name: kubectl
-        image: lachlanevenson/k8s-kubectl:v1.9.3
-        command: ["kubectl", "apply", "-f", "/certs/secret.yaml"]
-        volumeMounts:
-        - name: certs-path
-          mountPath: /certs
+        - name: kubectl
+          image: lachlanevenson/k8s-kubectl:v1.9.3
+          command: ["kubectl", "apply", "-f", "/certs/secret.yaml"]
+          volumeMounts:
+            - name: certs-path
+              mountPath: /certs
       volumes:
-      - name: certs-path
-        emptyDir: {}
+        - name: certs-path
+          emptyDir: {}
