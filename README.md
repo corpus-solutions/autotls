@@ -110,8 +110,8 @@ Customize the certs using the following Environment Variables:
 - `SSL_SIZE` SSL Cert size, default `2048` bits
 - `SSL_EXPIRE` SSL Cert expiry, default `60` days
 - `SSL_SUBJECT` SSL Subject default `example.com`
-- `SSL_DNS` semicolon seperate list of alternative hostnames, no default **[2]**
-- `SSL_IP` semicolon seperate list of alternative IPs, no default **[2]**
+- `SSL_DNS` semicolon(`;`) seperate list of alternative hostnames, no default **[2]**
+- `SSL_IP` semicolon(`;`) seperate list of alternative IPs, no default **[2]**
 
 **[1] If file already exists will re-use.**
 
