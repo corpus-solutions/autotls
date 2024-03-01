@@ -1,18 +1,21 @@
 name: publish
+
 on: [push]
+
 jobs:
-publish-autotls-docker-image:
-runs-on: ubuntu-latest
-steps:
-- uses: actions/checkout@v2
-- name: Login to GitHub Container Registry
-uses: docker/login-action@v1
-with:
-registry: ghcr.io
-username: ${{ github.actor }}
-password: ${{ secrets.GITHUB_TOKEN }}
-- name: Build the autotls-docker Docker image
-run: |
-       docker build . --tag ghcr.io/corpus-solutions/autotls:latest
-       docker run ghcr.io/corpus-solutions/autotls:latest
-       docker push ghcr.io/corpus-solutions/autotls:latest
+  publish-autotls-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Login to GitHub Container Registry
+      uses: actions/checkout@v2
+
+    - name: Build the autotls-docker Docker image
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+              docker build . --tag ghcr.io/corpus-solutions/autotls:latest
+              docker run ghcr.io/corpus-solutions/autotls:latest
+              docker push ghcr.io/corpus-solutions/autotls:latest
