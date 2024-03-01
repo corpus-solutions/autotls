@@ -11,6 +11,7 @@ export CA_KEY=${CA_KEY-"ca-key.pem"}
 export CA_CERT=${CA_CERT-"ca.pem"}
 export CA_SUBJECT=${CA_SUBJECT:-"test-ca"}
 export CA_EXPIRE=${CA_EXPIRE:-"60"}
+export PEM_BUNDLE=${PEM_BUNDLE}
 
 export SSL_CONFIG=${SSL_CONFIG:-"openssl.cnf"}
 export SSL_KEY=${SSL_KEY:-"key.pem"}
@@ -95,6 +96,12 @@ openssl req -new -key "${SSL_KEY}" -out "${SSL_CSR}" -subj "/CN=${SSL_SUBJECT}" 
 [[ -z $SILENT ]] && echo "====> Generating new SSL CERT ${SSL_CERT}"
 openssl x509 -req -in "${SSL_CSR}" -CA "${CA_CERT}" -CAkey "${CA_KEY}" -CAcreateserial -out "${SSL_CERT}" \
   -days "${SSL_EXPIRE}" -extensions v3_req -extfile "${SSL_CONFIG}" >/dev/null || exit 1
+
+if [[ -n ${PEM_BUNDLE} ]]; then
+  cat "${SSL_KEY}" > "${PEM_BUNDLE}"
+  cat "${SSL_CERT}" >> "${PEM_BUNDLE}"
+  cat "${CA_CERT}" >> "${PEM_BUNDLE}"
+fi
 
 # create k8s secret file
 cat <<EOM >/certs/secret.yaml
